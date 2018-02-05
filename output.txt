@@ -1,0 +1,62 @@
+error: internal compiler error: librustc/traits/trans/mod.rs:67: Encountered error `OutputTypeParameterMismatch(Binder(<[closure@src/main.rs:50:9: 55:10] as std::ops::Fn<(std::vec::Vec<<M as Owned<'_>>::Reader>,)>>), Binder(<[closure@src/main.rs:50:9: 55:10] as std::ops::Fn<(std::vec::Vec<MReader>,)>>), Sorts(ExpectedFound { expected: MReader, found: <M as Owned<'_>>::Reader }))` selecting `Binder(<[closure@src/main.rs:50:9: 55:10] as std::ops::Fn<(std::vec::Vec<MReader>,)>>)` during trans
+
+thread 'rustc' panicked at 'Box<Any>', librustc_errors/lib.rs:529:9
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+stack backtrace:
+   0: std::sys::unix::backtrace::tracing::imp::unwind_backtrace
+   1: std::sys_common::backtrace::print
+   2: std::panicking::default_hook::{{closure}}
+   3: std::panicking::default_hook
+   4: std::panicking::rust_panic_with_hook
+   5: std::panicking::begin_panic
+   6: rustc_errors::Handler::bug
+   7: <std::thread::local::LocalKey<T>>::with
+   8: rustc::ty::context::tls::with_opt
+   9: rustc::session::opt_span_bug_fmt
+  10: rustc::session::bug_fmt
+  11: <std::thread::local::LocalKey<T>>::with
+  12: rustc::ty::context::GlobalCtxt::enter_local
+  13: rustc::traits::trans::trans_fulfill_obligation
+  14: rustc::ty::maps::<impl rustc::ty::maps::queries::trans_fulfill_obligation<'tcx>>::compute_result
+  15: rustc::dep_graph::graph::DepGraph::with_task_impl
+  16: rustc_errors::Handler::track_diagnostics
+  17: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::cycle_check
+  18: rustc::ty::maps::<impl rustc::ty::maps::queries::trans_fulfill_obligation<'tcx>>::force
+  19: rustc::ty::maps::<impl rustc::ty::maps::queries::trans_fulfill_obligation<'tcx>>::try_get
+  20: rustc::ty::maps::TyCtxtAt::trans_fulfill_obligation
+  21: rustc::ty::instance::Instance::resolve
+  22: rustc_mir::monomorphize::collector::visit_fn_use
+  23: <rustc_mir::monomorphize::collector::MirNeighborCollector<'a, 'tcx> as rustc::mir::visit::Visitor<'tcx>>::visit_terminator_kind
+  24: rustc::mir::visit::Visitor::visit_mir
+  25: rustc_mir::monomorphize::collector::collect_items_rec
+  26: rustc_mir::monomorphize::collector::collect_items_rec
+  27: rustc_mir::monomorphize::collector::collect_items_rec
+  28: rustc_mir::monomorphize::collector::collect_crate_mono_items
+  29: rustc::util::common::time
+  30: rustc_trans::base::collect_and_partition_translation_items
+  31: rustc::dep_graph::graph::DepGraph::with_task_impl
+  32: rustc_errors::Handler::track_diagnostics
+  33: rustc::ty::maps::plumbing::<impl rustc::ty::context::TyCtxt<'a, 'gcx, 'tcx>>::cycle_check
+  34: rustc::ty::maps::<impl rustc::ty::maps::queries::collect_and_partition_translation_items<'tcx>>::force
+  35: rustc::ty::maps::<impl rustc::ty::maps::queries::collect_and_partition_translation_items<'tcx>>::try_get
+  36: rustc::ty::maps::TyCtxtAt::collect_and_partition_translation_items
+  37: rustc::ty::maps::<impl rustc::ty::context::TyCtxt<'a, 'tcx, 'lcx>>::collect_and_partition_translation_items
+  38: <rustc_trans::LlvmTransCrate as rustc_trans_utils::trans_crate::TransCrate>::trans_crate
+  39: rustc::util::common::time
+  40: rustc_driver::driver::phase_4_translate_to_llvm
+  41: rustc_driver::driver::compile_input::{{closure}}
+  42: <std::thread::local::LocalKey<T>>::with
+  43: <std::thread::local::LocalKey<T>>::with
+  44: rustc::ty::context::TyCtxt::create_and_enter
+  45: rustc_driver::driver::compile_input
+  46: rustc_driver::run_compiler
+
+note: the compiler unexpectedly panicked. this is a bug.
+
+note: we would appreciate a bug report: https://github.com/rust-lang/rust/blob/master/CONTRIBUTING.md#bug-reports
+
+note: rustc 1.25.0-nightly (def3269a7 2018-01-30) running on x86_64-apple-darwin
+
+error: Could not compile `compiler-error`.
+
+To learn more, run the command again with --verbose.
