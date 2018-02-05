@@ -1,0 +1,8 @@
+[package]
+name = "compiler-error"
+version = "0.1.0"
+authors = ["Alexander Polyakov <aleksandr.polyakov@kupibilet.ru>"]
+
+[dependencies]
+capnp = "=0.8.15"
+error-chain = "=0.11.0"
